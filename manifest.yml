@@ -1,0 +1,11 @@
+---
+name: DeepLabCut
+icon: fa://desktop
+category: Interactive Apps
+subcategory: GUIs
+role: batch_connect
+description: |
+  This app will launch the [DeepLabCut] GUI on the [Quest cluster].
+
+  [DeepLabCut]: https://github.com/DeepLabCut/DeepLabCut
+  [Quest cluster]: https://www.it.northwestern.edu/departments/it-services-support/research/computing/quest/index.html
