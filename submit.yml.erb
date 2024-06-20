@@ -48,7 +48,7 @@ batch_connect:
     <%- end %>
 
     if [ ! -d "$HOME/.deeplabcut/" ]; then
-        mkdir -p $HOME/.deeplabcut/ && singularity exec /software/deeplabcut/2.3.9/deeplabcut-ood.sif cp -r /usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $HOME/.deeplabcut/;
+        mkdir -p $HOME/.deeplabcut/ && singularity exec "${container_image}" cp -r /usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $HOME/.deeplabcut/;
     fi;
 
     singularity exec -B $HOME/.deeplabcut/pretrained:/usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $SING_GPU $SING_BINDS "${container_image}" /bin/bash container.sh
