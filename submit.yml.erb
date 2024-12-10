@@ -53,11 +53,19 @@ batch_connect:
     export SING_GPU=""
     <%- end %>
 
+<%- if version == "/hpc/software/deeplabcut/2.3.9/deeplabcut-ood.sif" %>
     if [ ! -d "$HOME/.deeplabcut/" ]; then
         mkdir -p $HOME/.deeplabcut/ && singularity exec "${container_image}" cp -r /usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $HOME/.deeplabcut/;
     fi;
 
     singularity exec -B $HOME/.deeplabcut/pretrained:/usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $SING_GPU $SING_BINDS "${container_image}" /bin/bash container.sh
+<%- elsif version == "/hpc/software/rhel8/quest_ondemand/quest_ood_deeplabcut/quest-ood-dlc.sif" %>
+    if [ ! -d "$HOME/.deeplabcut_2d3d10/" ]; then
+        mkdir -p $HOME/.deeplabcut_2d3d10/ && singularity exec "${container_image}" cp -r /miniconda/envs/deeplabcut-2.3.10/lib/python3.10/site-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $HOME/.deeplabcut_2d3d10/;
+    fi;
+
+    singularity exec -B $HOME/.deeplabcut_2d3d10/pretrained:/miniconda/envs/deeplabcut-2.3.10/lib/python3.10/site-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $SING_GPU $SING_BINDS "${container_image}" /bin/bash container.sh
+<%- end %>
 
   header: | 
     #!/bin/bash
