@@ -56,6 +56,8 @@ batch_connect:
     export SING_GPU=""
     <%- end %>
 
+    export SINGULARITYENV_PYTHONNOUSERSITE=1
+
 <%- if version == "/hpc/software/deeplabcut/2.3.9/deeplabcut-ood.sif" %>
     if [ ! -d "$HOME/.deeplabcut/" ]; then
         mkdir -p $HOME/.deeplabcut/ && singularity exec "${container_image}" cp -r /usr/local/lib/python3.8/dist-packages/deeplabcut/pose_estimation_tensorflow/models/pretrained/ $HOME/.deeplabcut/;
